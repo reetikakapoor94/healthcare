@@ -18,6 +18,6 @@ Route::get('professionals',[HealthcareProfessionalController::class,'index']);
 
 Route::get('appointments',[AppointmentController::class,'index']);
 Route::post('appointments',[AppointmentController::class,'store']);
-Route::post('appointments/{id}/cancel',[AppointmentController::class,'cancel']);
-Route::post('appointments/{id}/complete',[AppointmentController::class,'complete']);
+Route::post('appointments/{appointment}/cancel',[AppointmentController::class,'cancel']);
+Route::post('appointments/{appointment}/complete',[AppointmentController::class,'complete']);
 });
