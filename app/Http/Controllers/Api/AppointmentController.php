@@ -7,18 +7,22 @@ use App\Http\Requests\BookAppointmentRequest;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Requests\AppointmentActionRequest;
+use App\Http\Resources\AppointmentResource;
+use App\Http\Resources\AppointmentCollection;
 
 class AppointmentController extends Controller
 {
     public function index(Request $request)
     {
-        $appointments = $request->user()
-            ->appointments()
-            ->with('professional')
-            ->latest('appointment_start_time')
-            ->get();
+    $perPage = $request->get('per_page', 15);
 
-        return response()->json($appointments);
+    $appointments = $request->user()
+        ->appointments()
+        ->with('professional')
+        ->orderBy('appointment_start_time', 'desc')
+        ->paginate($perPage);
+
+    return new AppointmentCollection($appointments);
     }
 
     public function store(BookAppointmentRequest $request)
