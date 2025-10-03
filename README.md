@@ -22,7 +22,7 @@ The API supports user authentication, professional availability checks, appointm
 - **Laravel 10+**
 - **PHP 8.1+**
 - **MySQL 8**
-- **JWT (tymon/jwt-auth)**
+- **Sanctum**
 - **Docker & Docker Compose** (optional)
 
 ---
@@ -54,9 +54,9 @@ DB_PASSWORD=
 ### 4. Run Migrations & Seeders
 php artisan migrate --seed
 
-### 5. Install JWT & Generate Secret
-composer require tymon/jwt-auth
-php artisan jwt:secret
+### 5. Install Sanctum
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 
 6. Start Server
 php artisan serve
